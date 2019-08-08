@@ -8,24 +8,28 @@ __version__ = "0.0.1"
 __web__ = "https://github.com/antjim"
 __status__ = "Preduction"
 
+import read
+import bruteForce
+
+
 class ninjcard():
 
     def read():
         asdasd
 
     def write():
-        asdasd
+        pass
 
     def dump():
-        asdasd
+        pass
 
     def decrypt():
-        asdasd
+        bruteForce.run()
 
 def main():
     nin=ninjcard()
     while True:
-      
+      pass
 
 if __name__== "__main__":
   main()
