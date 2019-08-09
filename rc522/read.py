@@ -76,6 +76,7 @@ def operation(continue_reading):
                 # Check if authenticated
                 if status == MIFAREReader.MI_OK:
                     print "[i] Default key founded! --> "+str(key)
+
                     MIFAREReader.MFRC522_Read(0)
                     MIFAREReader.MFRC522_StopCrypto1()
                     print ""

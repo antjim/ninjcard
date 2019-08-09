@@ -71,8 +71,10 @@ def op(continue_reading):
 
             # Stop
             MIFAREReader.MFRC522_StopCrypto1()
+            
             check=False
             continue_reading=False
+            raw_input("[i] ENTER for go to main.")
 
         if(check):
             print "[-] Authentication error, there aren't default key."
