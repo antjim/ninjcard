@@ -1,7 +1,9 @@
 #!/usr/bin/python
+# -*- coding: utf8 -*-
 
 import RPi.GPIO as GPIO, MFRC522, signal, sys, re
 from time import time
+import ninjcard
 
 # Capture SIGINT for cleanup when the script is aborted.
 
@@ -59,7 +61,7 @@ def Reader(attempt, ishex, time_start):
                     MIFAREReader.MFRC522_Read(8)
                     MIFAREReader.MFRC522_StopCrypto1()
                     time_r=time()-time_start
-                    sys.exit("[!] SUCCESS [!] - The correct key is " + str(key)+" time: "+str(time_r))
+                    sys.exit("[!] SUCCESS [!] - The correct key is " + str(key)+" time (seconds): "+str(time_r))
                     break
 
                 else:
@@ -68,68 +70,65 @@ def Reader(attempt, ishex, time_start):
                     GPIO.cleanup()
 
 
-def run(i1,i2,i3,i4,i5,i6):
+def op(i1,i2,i3,i4,i5,i6):
     print("[i] Generating all 274,941,996,890,625 combinations... Please be patient.")
     time_start=time()
 
-    try:
+    def tempcombo(t1, t2, t3, t4, t5, t6):
+        temp_combo = []
+        temp_combo.extend([i1, i2, i3, i4, i5, i6])
+        return temp_combo
 
-        def tempcombo(t1, t2, t3, t4, t5, t6):
-            temp_combo = []
-            temp_combo.extend([i1, i2, i3, i4, i5, i6])
-            return temp_combo
+    while (i1 >= 1):
+        temp_combo = tempcombo(i1, i2, i3, i4, i5, i6)
+        Reader(temp_combo, False, time_start)
 
-        while (i1 >= 1):
+        while (i2 >= 1):
             temp_combo = tempcombo(i1, i2, i3, i4, i5, i6)
             Reader(temp_combo, False, time_start)
 
-            while (i2 >= 1):
+            while (i3 >= 1):
                 temp_combo = tempcombo(i1, i2, i3, i4, i5, i6)
                 Reader(temp_combo, False, time_start)
 
-                while (i3 >= 1):
+                while (i4 >= 1):
                     temp_combo = tempcombo(i1, i2, i3, i4, i5, i6)
                     Reader(temp_combo, False, time_start)
 
-                    while (i4 >= 1):
+                    while (i5 >= 1):
                         temp_combo = tempcombo(i1, i2, i3, i4, i5, i6)
                         Reader(temp_combo, False, time_start)
 
-                        while (i5 >= 1):
+                        while (i6 >= 1):
                             temp_combo = tempcombo(i1, i2, i3, i4, i5, i6)
                             Reader(temp_combo, False, time_start)
+                            i6 -= 1
 
-                            while (i6 >= 1):
-                                temp_combo = tempcombo(i1, i2, i3, i4, i5, i6)
-                                Reader(temp_combo, False, time_start)
-                                i6 -= 1
+                        i6 = 255
+                        i5 -= 1
 
-                            i6 = 255
-                            i5 -= 1
+                    i5 = 255
+                    i4 -= 1
 
-                        i5 = 255
-                        i4 -= 1
+                i4 = 255
+                i3 -= 1
 
-                    i4 = 255
-                    i3 -= 1
+            i3 = 255
+            i2 -= 1
 
-                i3 = 255
-                i2 -= 1
+        i2 = 255
+        i1 -= 1
 
-            i2 = 255
-            i1 -= 1
+    i1 = 255
 
-        i1 = 255
-
-    except:
-        print("[-] Error, Try it again!")
-        run(i1,i2,i3,i4,i5,i6)
-
-if __name__== "__main__":
+def run():
     i1 = 255
     i2 = 255
     i3 = 255
     i4 = 255
     i5 = 255
     i6 = 255
-    run(i1,i2,i3,i4,i5,i6)
+    op(i1,i2,i3,i4,i5,i6)
+
+if __name__== "__main__":
+    run()
