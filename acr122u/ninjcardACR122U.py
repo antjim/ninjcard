@@ -60,7 +60,8 @@ class ninjcard():
     def clone(self):
         print("")
         dump=raw_input("Name of dump: ")
-        os.system("nfc-mfclassic W a {}".format(dump))
+        key=raw_input("Name of Magic Card: ")
+        os.system("nfc-mfclassic w a {} {}".format(key,dump))
         raw_input("[i] Completed.")
 
 
