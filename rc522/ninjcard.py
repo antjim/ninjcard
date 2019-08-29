@@ -4,9 +4,9 @@
 
 __author__ = "Antonio J."
 __license__ = "https://github.com/antjim/ninjcard/blob/master/LICENSE"
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 __web__ = "https://github.com/antjim"
-__status__ = "Preduction"
+__status__ = "Production"
 
 import os
 import sys
@@ -53,28 +53,32 @@ def main():
       r=raw_input("[*] Please, select an option: ")
 
 
-      if ("1" in r):
+      if ("1" == r):
           print "[i] Selected Read Option ..."
           time.sleep(3)
           nin.read()
 
 
-      if ("2" in r):
+      if ("2" == r):
           print "[i] Selected Write Option ..."
           time.sleep(3)
           nin.write()
 
 
-      if ("3" in r):
+      if ("3" == r):
           print "[i] Selected Dump Option ..."
           time.sleep(3)
           nin.dump()
 
 
-      if ("4" in r):
+      if ("4" == r):
           print "[i] Selected Brute Force Option ..."
           time.sleep(3)
           nin.bruteF()
+
+      else:
+          print "[i] Select a valid number."
+          time.sleep(3)
 
 if __name__== "__main__":
   main()
