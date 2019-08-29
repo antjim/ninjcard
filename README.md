@@ -2,7 +2,8 @@
 Ninjcard is a toolkit that help you to clonate, to read, to write a set of MIFARE cards.  This is a academic project, although this project could use for pentesting.
 
 ## Requisites
-You have to use a OS based on Debian (Linux Mint, Ubuntu, Debian, etc).
+- You have to use a OS based on Debian (Linux Mint, Ubuntu, Debian, etc).
+- It's necessary to use `Python 2.7.15+`.
 
 ## Installation
 - If you want use a reader RC 522 in a Raspberry pi, you have to execute `sudo bash utils/installRC522.sh`.
